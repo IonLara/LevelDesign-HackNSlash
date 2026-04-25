@@ -45,5 +45,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   totalenemies: 3
-  spawnCoolDown: 5
-  enemy: {fileID: 2186095469475283821, guid: 5b6c8ca3884f1b44c9ff33cd0f2ed887, type: 3}
+  spawnCoolDown: 1
+  enemy: {fileID: 1390202073388700544, guid: 6a85d0991141c3c4094bf8f89e43d4c8, type: 3}
