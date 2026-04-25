@@ -25,7 +25,7 @@ public class Barrier : MonoBehaviour
             }
             foreach (var enemy in enemies)
             {
-                enemy.barrier = this;
+                enemy.barriers.Add(this);
             }
         }
     }

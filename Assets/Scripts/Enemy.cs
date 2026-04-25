@@ -1,6 +1,6 @@
 using UnityEngine;
 using UnityEngine.AI;
-
+using System.Collections.Generic;
 public class Enemy : MonoBehaviour
 {
     private NavMeshAgent agent;
@@ -32,7 +32,7 @@ public class Enemy : MonoBehaviour
     [HideInInspector]
     public EnemySpawner spawner;
     [HideInInspector]
-    public Barrier barrier;
+    public List<Barrier> barriers = new List<Barrier>();
 
     void OnEnable()
     {
@@ -133,9 +133,13 @@ public class Enemy : MonoBehaviour
             {
                 spawner.EnemyDeath();
             }
-            if (barrier != null)
+            if (barriers != null)
             {
-                barrier.EnemyDeath(this);
+                foreach (var item in barriers)
+                {
+                    item.EnemyDeath(this);
+                }
+                
             }
             Destroy(gameObject);
         }
