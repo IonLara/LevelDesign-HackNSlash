@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class EnemySpawner : MonoBehaviour
@@ -11,16 +12,22 @@ public class EnemySpawner : MonoBehaviour
 
     public GameObject enemy;
 
-    private Barrier barrier;
+    private List<Barrier> barriers = new List<Barrier>();
+    private bool started = false;
 
     public void Startwaves(Barrier barrier)
     {
+        barriers.Add(barrier);
+        if (started)
+        {
+            return;
+        }
         Spawn();
-        this.barrier = barrier;
     }
 
     private void Spawn()
     {
+        started = true;
         var foo = Instantiate(enemy, transform.position, Quaternion.identity);
         foo.GetComponent<Enemy>().spawner = this;
         spawnCount++;
@@ -36,7 +43,10 @@ public class EnemySpawner : MonoBehaviour
 
         if (deathCount == totalenemies)
         {
-            barrier.SpawnerDone(this);
+            foreach (var barrier in barriers)
+            {
+                barrier.SpawnerDone(this);
+            }
         }
     }
 }

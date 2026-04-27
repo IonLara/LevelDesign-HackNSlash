@@ -40,6 +40,20 @@ public class Player : MonoBehaviour
 
     private Vector3 checkpoint;
 
+    private bool grounded = true;
+    private bool canJump = true;
+    public float jumpCoolDown = 0.5f;
+    public float tJump;
+    private float JumpForce = 5f;
+    public LayerMask groundMask;
+
+    private Transform myCamera;
+
+    [HideInInspector]
+    public Rigidbody platformRb;
+    [HideInInspector]
+    public Interactable interactable;
+
     void Awake()
     {
         actions = new PlayerActions();
@@ -52,9 +66,11 @@ public class Player : MonoBehaviour
         CameraTarget target = new CameraTarget
         {
             TrackingTarget = transform,
+            LookAtTarget = transform,
             CustomLookAtTarget = true
         };
         cam.GetComponent<CinemachineCamera>().Target = target;
+        myCamera = cam.transform;
 
         checkpoint = transform.position;
         maxHealth = health;
@@ -76,7 +92,8 @@ public class Player : MonoBehaviour
         }
         animator.SetBool("IsMoving", movement.magnitude > 0);
 
-        transform.rotation = Quaternion.LookRotation(lastDirection.normalized, Vector3.up);
+        var rotation = Quaternion.Euler(new Vector3(0, myCamera.eulerAngles.y, 0));
+        transform.rotation = Quaternion.LookRotation(rotation * lastDirection.normalized, Vector3.up);
 
         if (canAttack)
         {
@@ -112,18 +129,60 @@ public class Player : MonoBehaviour
             }
         }
 
+        if (interactable != null && actions.Game.Interact.WasPressedThisFrame())
+        {
+            interactable.Activate();
+        }
+
+        if (canJump)
+        {
+            if (grounded && actions.Game.Jump.WasPressedThisFrame())
+            {
+                Jump();
+            }
+        }
+        else
+        {
+            tJump -= Time.deltaTime;
+            if (tJump <= 0)
+            {
+                tJump = 0;
+                canJump = true;
+            }
+        }
     }
 
     void FixedUpdate()
     {
         if (isAlive)
         {
-            rb.AddForce(new Vector3(movement.x, 0, movement.y).normalized * speed, ForceMode.Impulse);
+            var rotation = Quaternion.Euler(new Vector3(0, myCamera.eulerAngles.y, 0));
+            if (platformRb != null)
+            {
+                var velocity = new Vector3(platformRb.linearVelocity.x, rb.linearVelocity.y, platformRb.linearVelocity.z);
+                rb.linearVelocity = velocity;
+            }
+            rb.AddForce(rotation *new Vector3(movement.x, 0, movement.y).normalized * speed, ForceMode.Impulse);
         }
         else
         {
             rb.linearVelocity = Vector3.zero;
         }
+
+        var tempGround = Physics.Raycast(transform.position + (Vector3.up * 0.1f), Vector3.down, 0.2f, groundMask);
+        if (grounded == false && tempGround == true)
+        {
+            animator.SetTrigger("Land");
+        }
+        grounded = tempGround;
+    }
+
+    private void Jump()
+    {
+        rb.AddForce(Vector3.up * JumpForce, ForceMode.Impulse);
+        canJump = false;
+        tJump = jumpCoolDown;
+        animator.SetTrigger("Jump");
     }
 
     private void Dash()

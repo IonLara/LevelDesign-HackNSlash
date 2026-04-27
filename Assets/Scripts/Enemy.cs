@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -32,7 +33,7 @@ public class Enemy : MonoBehaviour
     [HideInInspector]
     public EnemySpawner spawner;
     [HideInInspector]
-    public Barrier barrier;
+    public List<Barrier> barriers = new List<Barrier>();
 
     void OnEnable()
     {
@@ -133,7 +134,7 @@ public class Enemy : MonoBehaviour
             {
                 spawner.EnemyDeath();
             }
-            if (barrier != null)
+            foreach (var barrier in barriers)
             {
                 barrier.EnemyDeath(this);
             }
