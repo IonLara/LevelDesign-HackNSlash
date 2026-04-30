@@ -8345,6 +8345,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 614718060597162319, guid: 8bda7fe41d9ee7442b94d7c074c95a5a, type: 3}
+      propertyPath: totalenemies
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 3337003072512604692, guid: 8bda7fe41d9ee7442b94d7c074c95a5a, type: 3}
       propertyPath: m_Name
       value: Spawner (2)
