@@ -25,6 +25,13 @@ public class EnemySpawner : MonoBehaviour
         Spawn();
     }
 
+    public void Startwaves()
+    {
+        if (started)
+            { return; }
+        Spawn();
+    }
+
     private void Spawn()
     {
         started = true;
