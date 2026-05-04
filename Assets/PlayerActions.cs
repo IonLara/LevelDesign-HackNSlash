@@ -197,7 +197,7 @@ public partial class @PlayerActions: IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""9805a538-5f5b-411e-a426-71124343f983"",
-                    ""path"": ""<Keyboard>/alt"",
+                    ""path"": ""<Keyboard>/q"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
