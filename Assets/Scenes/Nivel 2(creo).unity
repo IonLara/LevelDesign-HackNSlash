@@ -1025,15 +1025,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4174935728440567927, guid: 8bda7fe41d9ee7442b94d7c074c95a5a, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -15.741
+      value: -27.73
       objectReference: {fileID: 0}
     - target: {fileID: 4174935728440567927, guid: 8bda7fe41d9ee7442b94d7c074c95a5a, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 7.09
+      value: 6.91
       objectReference: {fileID: 0}
     - target: {fileID: 4174935728440567927, guid: 8bda7fe41d9ee7442b94d7c074c95a5a, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 24.62
+      value: 38.26
       objectReference: {fileID: 0}
     - target: {fileID: 4174935728440567927, guid: 8bda7fe41d9ee7442b94d7c074c95a5a, type: 3}
       propertyPath: m_LocalRotation.w
@@ -4485,8 +4485,8 @@ Transform:
   m_GameObject: {fileID: 1014642100}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.028, y: 0.16, z: 11.70986}
-  m_LocalScale: {x: 1, y: 0.58372, z: 1}
+  m_LocalPosition: {x: -2.028, y: 0.06, z: 11.70986}
+  m_LocalScale: {x: 1, y: 0.45076028, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -8098,6 +8098,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 614718060597162319, guid: 8bda7fe41d9ee7442b94d7c074c95a5a, type: 3}
+      propertyPath: totalenemies
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 614718060597162319, guid: 8bda7fe41d9ee7442b94d7c074c95a5a, type: 3}
+      propertyPath: spawnCoolDown
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3337003072512604692, guid: 8bda7fe41d9ee7442b94d7c074c95a5a, type: 3}
       propertyPath: m_Name
       value: Spawner
