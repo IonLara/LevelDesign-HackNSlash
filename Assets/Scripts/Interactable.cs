@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Interactable : MonoBehaviour
 {
-    public IInteractable interactable;
+    public IInteractable[] interactables;
     public GameObject toggle;
 
     public GameObject text;
@@ -39,9 +39,9 @@ public class Interactable : MonoBehaviour
             return;
         }
         text.SetActive(false);
-        if (interactable != null)
+        foreach (var item in interactables)
         {
-            interactable.Interact();
+            item.Interact();
         }
         done = true;
         if (toggle != null)
