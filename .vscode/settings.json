@@ -66,5 +66,5 @@
     "explorer.fileNesting.patterns": {
         "*.sln": "*.csproj"
     },
-    "dotnet.defaultSolution": "HackNSlash.sln"
+    "dotnet.defaultSolution": "LevelDesign-HackNSlash.sln"
 }
