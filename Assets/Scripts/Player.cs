@@ -178,14 +178,16 @@ public class Player : MonoBehaviour
         if (grounded == false && tempGround == true)
         {
             animator.SetTrigger("Land");
+            
             if (Mathf.Abs(transform.position.y - jumpApex) > fallDeathDistance)
             {
                 Damage(10);
             }
+            apexed = false;
         }
         grounded = tempGround;
 
-        if (!grounded && rb.linearVelocity.y < 0 && apexed != false)
+        if (!grounded && rb.linearVelocity.y < 0 && apexed == false)
         {
             apexed = true;
             jumpApex = transform.position.y;
